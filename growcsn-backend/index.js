@@ -64,7 +64,7 @@ const PORT = process.env.SERVER_PORT || 5001;
 
 
 
-app.post("/get-items-data", async (req, res, next) => {
+app.get("/get-items-data", async (req, res, next) => {
   try {
     // Read JSON file from your project
     const filePath = path.join(process.cwd(), "public", "items.json");
