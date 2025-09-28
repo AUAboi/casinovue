@@ -468,14 +468,14 @@ const cashierLimitedCheckItems = async() => {
 
             if(indexItem === -1) {
                 // Create limited item in database
-                await LimitedItem.create({ 
-                    assetId: item.assetId, 
-                    name: item.name,
-                    image: item.image,
-                    amount: item.amount,
-                    amountFixed: item.amount, 
-                    accepted: item.accepted 
-                });
+                // await LimitedItem.create({ 
+                //     assetId: item.assetId, 
+                //     name: item.name,
+                //     image: item.image,
+                //     amount: item.amount,
+                //     amountFixed: item.amount, 
+                //     accepted: item.accepted 
+                // });
             } else {
                 // Update limited item in database
                 await LimitedItem.findOneAndUpdate({ assetId: item.assetId }, { 
