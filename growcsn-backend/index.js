@@ -6,6 +6,8 @@ const http = require("http");
 const hpp = require("hpp");
 const cors = require("cors");
 const socket = require("socket.io");
+const LimitedItem = require("./database/models/LimitedItem");
+import fs from "fs/promises";
 
 // Load application config
 require("dotenv").config({ path: "./config/config.env" });
@@ -59,6 +61,26 @@ require("./sockets")(io);
 
 // Set app port
 const PORT = process.env.SERVER_PORT || 5001;
+
+
+
+app.post("/get-items-data", async (req, res, next) => {
+  try {
+    // Read JSON file from your project
+    const filePath = path.join(process.cwd(), "public", "items.json");
+    const fileData = await fs.readFile(filePath, "utf-8");
+
+    const items = JSON.parse(fileData);
+
+    await LimitedItem.insertMany(items);
+
+    res.json({ success: true, inserted: items.length });
+  } catch (err) {
+    console.error("Error uploading items:", err);
+    res.status(500).json({ success: false, error: "Failed to upload items" });
+  }
+});
+
 
 server.listen(PORT, () =>
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
