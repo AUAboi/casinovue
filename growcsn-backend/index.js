@@ -7,7 +7,7 @@ const hpp = require("hpp");
 const cors = require("cors");
 const socket = require("socket.io");
 const LimitedItem = require("./database/models/LimitedItem");
-import fs from "fs/promises";
+const fs = require("fs").promises;  
 
 // Load application config
 require("dotenv").config({ path: "./config/config.env" });
