@@ -151,7 +151,7 @@ const cashierLimitedGetItems = () => {
     return new Promise(async(resolve, reject) => {
         try {
             // Send get limited items request
-            let response = await fetch('https://www.rolimons.com/itemapi/itemdetails');
+            let response = await fetch('/public/items.json');
 
             // Check if the response is successful
             if(response.ok) {
